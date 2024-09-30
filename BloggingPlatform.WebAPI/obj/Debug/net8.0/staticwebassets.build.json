@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "4gzRSAltBTdAkCak5eISSEO8CCRH6C8AwyVGBkZECLg=",
+  "Source": "BloggingPlatform.WebAPI",
+  "BasePath": "_content/BloggingPlatform.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

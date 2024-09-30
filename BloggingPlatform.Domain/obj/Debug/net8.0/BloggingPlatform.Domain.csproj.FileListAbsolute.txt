@@ -1,0 +1,12 @@
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\bin\Debug\net8.0\BloggingPlatform.Domain.deps.json
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\bin\Debug\net8.0\BloggingPlatform.Domain.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\bin\Debug\net8.0\BloggingPlatform.Domain.pdb
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\BloggingPlatform.Domain.csproj.AssemblyReference.cache
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\BloggingPlatform.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\BloggingPlatform.Domain.AssemblyInfoInputs.cache
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\BloggingPlatform.Domain.AssemblyInfo.cs
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\BloggingPlatform.Domain.csproj.CoreCompileInputs.cache
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\BloggingPlatform.Domain.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\refint\BloggingPlatform.Domain.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\BloggingPlatform.Domain.pdb
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Domain\obj\Debug\net8.0\ref\BloggingPlatform.Domain.dll

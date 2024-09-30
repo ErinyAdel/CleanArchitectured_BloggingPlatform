@@ -1,0 +1,15 @@
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\bin\Debug\net8.0\BloggingPlatform.Application.deps.json
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\bin\Debug\net8.0\BloggingPlatform.Application.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\bin\Debug\net8.0\BloggingPlatform.Application.pdb
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\bin\Debug\net8.0\BloggingPlatform.Domain.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\bin\Debug\net8.0\BloggingPlatform.Domain.pdb
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.csproj.AssemblyReference.cache
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.AssemblyInfoInputs.cache
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.AssemblyInfo.cs
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.csproj.CoreCompileInputs.cache
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\Blogging.2E2AE8FC.Up2Date
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\refint\BloggingPlatform.Application.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.pdb
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\ref\BloggingPlatform.Application.dll
