@@ -11,7 +11,6 @@ namespace BloggingPlatform.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<string> LoginUserAsync();
         Task<ResponseModel<AuthModel>> RegisterUserAsync(RegisterDTO model);
     }
 }

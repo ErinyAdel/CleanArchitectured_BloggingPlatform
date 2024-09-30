@@ -31,15 +31,9 @@ namespace BloggingPlatform.Persistence.Services
     {
         private readonly IMediator _mediator;
 
-
         public UserService(IMediator mediator)
         {
             _mediator = mediator;
-        }
-
-        public async Task<string> LoginUserAsync()
-        {
-            return "";
         }
 
         public async Task<ResponseModel<AuthModel>> RegisterUserAsync(RegisterDTO model)

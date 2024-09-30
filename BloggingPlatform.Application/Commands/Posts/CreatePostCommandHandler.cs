@@ -28,7 +28,7 @@ namespace BloggingPlatform.Application.Commands.Posts
             };
 
             await _postRepository.AddAsync(post);
-            return post.Id; // Return the ID of the newly created post
+            return post.Id;
         }
     }
 }

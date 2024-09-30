@@ -36,9 +36,6 @@ namespace BloggingPlatform.WebAPI.Controllers
             if (!resultVal.IsValid)
                 return BadRequest(ModelState);
 
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
-
             var result = await _userService.RegisterUserAsync(model);
             if (result == null)
                 return StatusCode((int)ResponseStatusCode.NoContent, new { Message = "Error In Registration" });

@@ -34,7 +34,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Creat
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 /* Configure JWT Authentication */
-builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT_Param"));
 
 builder.Services.AddAuthentication(options =>
 {
@@ -49,13 +49,14 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["JWT:Issuer"],
-        ValidAudience = builder.Configuration["JWT:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+        ValidIssuer = builder.Configuration["JWT_Param:Issuer"],
+        ValidAudience = builder.Configuration["JWT_Param:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT_Param:Key"]))
     };
 });
 
 /* Dependency Injection */
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 
@@ -75,6 +76,8 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+await SeedRoles(app.Services);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -93,17 +96,16 @@ app.Run();
 /* Method To Seed Roles */
 async Task SeedRoles(IServiceProvider serviceProvider)
 {
-    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-    string[] roleNames = { "User", "Admin" };
-
-    foreach (var roleName in roleNames)
+    using (var scope = serviceProvider.CreateScope())
     {
-        var roleExist = await roleManager.RoleExistsAsync(roleName);
-        if (!roleExist)
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        string[] roleNames = { "User", "Admin" };
+
+        foreach (var roleName in roleNames)
         {
-            // Create the role if it does not exist
-            await roleManager.CreateAsync(new IdentityRole(roleName));
+            var roleExist = await roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+                await roleManager.CreateAsync(new IdentityRole(roleName));
         }
     }
 }
