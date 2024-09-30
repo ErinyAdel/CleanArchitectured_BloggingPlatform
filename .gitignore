@@ -1,8 +1,8 @@
 # Visual Studio
 .vs/
 # Build results
-[Bb]in/
-[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
 # Other temporary files
 *.log
 *.tmp

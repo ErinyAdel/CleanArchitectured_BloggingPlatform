@@ -1,4 +1,5 @@
 using BloggingPlatform.Application.Commands.Posts;
+using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Application.Mapper;
 using BloggingPlatform.Application.Repositories.Posts;
@@ -33,6 +34,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Creat
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 /* Configure JWT Authentication */
+builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -86,3 +89,21 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+/* Method To Seed Roles */
+async Task SeedRoles(IServiceProvider serviceProvider)
+{
+    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    string[] roleNames = { "User", "Admin" };
+
+    foreach (var roleName in roleNames)
+    {
+        var roleExist = await roleManager.RoleExistsAsync(roleName);
+        if (!roleExist)
+        {
+            // Create the role if it does not exist
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
+}

@@ -126,6 +126,8 @@ namespace BloggingPlatform.Application.Commands.Users
             .Union(userClaims)
             .Union(roleClaims);
 
+            var aaaa = _jwt.Key;
+
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
