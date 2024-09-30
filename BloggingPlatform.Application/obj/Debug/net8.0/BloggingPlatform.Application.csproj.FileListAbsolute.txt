@@ -13,3 +13,4 @@ D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\Bl
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\refint\BloggingPlatform.Application.dll
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.pdb
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\ref\BloggingPlatform.Application.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Application\obj\Debug\net8.0\BloggingPlatform.Application.sourcelink.json

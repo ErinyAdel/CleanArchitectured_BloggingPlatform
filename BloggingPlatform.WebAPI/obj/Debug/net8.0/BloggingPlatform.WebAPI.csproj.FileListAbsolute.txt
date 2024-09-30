@@ -304,3 +304,4 @@ D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\Bl
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.WebAPI\obj\Debug\net8.0\BloggingPlatform.WebAPI.genruntimeconfig.cache
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.WebAPI\obj\Debug\net8.0\ref\BloggingPlatform.WebAPI.dll
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.WebAPI\bin\Debug\net8.0\Microsoft.Bcl.TimeProvider.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.WebAPI\obj\Debug\net8.0\BloggingPlatform.WebAPI.sourcelink.json

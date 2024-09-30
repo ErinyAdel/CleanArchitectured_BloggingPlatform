@@ -17,3 +17,4 @@ D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\Bl
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Persistence\obj\Debug\net8.0\BloggingPlatform.Persistence.pdb
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Persistence\obj\Debug\net8.0\BloggingPlatform.Persistence.genruntimeconfig.cache
 D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Persistence\obj\Debug\net8.0\ref\BloggingPlatform.Persistence.dll
+D:\SingleClic\Software Development\Study Projects\Clean Architecture Projects\BloggingPlatformProject\BloggingPlatform\BloggingPlatform.Persistence\obj\Debug\net8.0\BloggingPlatform.Persistence.sourcelink.json
