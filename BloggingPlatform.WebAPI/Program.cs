@@ -3,6 +3,7 @@ using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
 using BloggingPlatform.Application.Helpers;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Application.Mapper;
+using BloggingPlatform.Application.Queries.Posts;
 using BloggingPlatform.Application.Repositories.Posts;
 using BloggingPlatform.Application.Validators.UsersValidators;
 using BloggingPlatform.Domain.Entities;
@@ -22,14 +23,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-/* Register AutoMapper (Assuming you have a Profile set up in the Application layer) */
-builder.Services.AddAutoMapper(typeof(MappingProfile)); // MappingProfile is your custom AutoMapper profile
+/* Register AutoMapper */
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 /* Configure DbContext */
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 /* Register MediatR */
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePostCommandHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPostQueryHandler).Assembly));
 
 /* Configure Identity */
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
@@ -59,16 +61,15 @@ builder.Services.AddAuthentication(options =>
 /* Dependency Injection */
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<TokenService>();
-
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<IPostService, PostService>();
 
 /* Fluent Validation */
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserValidator>();
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
