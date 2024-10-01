@@ -15,8 +15,10 @@ namespace BloggingPlatform.Application.Mapper
         public MappingProfile()
         {
             CreateMap<ApplicationUser, RegisterDTO>().ReverseMap();
+            CreateMap<ApplicationUser, UserLoginCommand>().ReverseMap();
             CreateMap<RegisterUserCommand, ApplicationUser>().ReverseMap();
             CreateMap<RegisterUserCommand, RegisterDTO>();
+            CreateMap<UserLoginCommand, LoginDTO>().ReverseMap();
         }
     }
 }

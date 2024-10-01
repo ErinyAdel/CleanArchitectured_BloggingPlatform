@@ -18,12 +18,14 @@ namespace BloggingPlatform.WebAPI.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
-        private UserValidator _validator;
+        private readonly RegisterUserValidator _registerValidator;
+        private readonly UserLoginValidator _loginValidator;
 
-        public UserController(IUserService userService, UserValidator validator)
+        public UserController(IUserService userService, RegisterUserValidator registerValidator, UserLoginValidator loginValidator)
         {
             _userService = userService;
-            _validator = validator;
+            _registerValidator = _registerValidator;
+            _loginValidator = loginValidator;
         }
 
         [HttpPost]
@@ -31,16 +33,31 @@ namespace BloggingPlatform.WebAPI.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
-            ValidationResult resultVal = await _validator.ValidateAsync(model);
+            ValidationResult resultVal = await _registerValidator.ValidateAsync(model);
 
             if (!resultVal.IsValid)
                 return BadRequest(ModelState);
 
             var result = await _userService.RegisterUserAsync(model);
-            if (result == null)
-                return StatusCode((int)ResponseStatusCode.NoContent, new { Message = "Error In Registration" });
-            else
-                return Ok(result);
+            if (!result.IsSuccess)
+                return StatusCode(result?.ErrorCode != null && result.ErrorCode != 0 ? (int)result.ErrorCode : (int)ResponseStatusCode.NoContent, new { Message = result.ErrorMessage });
+            return Ok(result);
+        }
+        
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDTO model)
+        {
+            ValidationResult resultVal = await _loginValidator.ValidateAsync(model);
+
+            if (!resultVal.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.UserLoginAsync(model);
+            if (!result.IsSuccess)
+                return StatusCode(result?.ErrorCode != null && result.ErrorCode != 0 ? (int)result.ErrorCode : (int)ResponseStatusCode.NoContent, new { Message = result.ErrorMessage });
+            return Ok(result);
         }
     }
 }

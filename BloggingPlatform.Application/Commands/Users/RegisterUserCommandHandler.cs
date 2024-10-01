@@ -2,8 +2,10 @@
 using BloggingPlatform.Application.Constants;
 using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
 using BloggingPlatform.Application.DTOs.UserDTOs;
+using BloggingPlatform.Application.Helpers;
 using BloggingPlatform.Application.Helpers.Response;
 using BloggingPlatform.Application.Interfaces;
+using BloggingPlatform.Application.Validators.UsersValidators;
 using BloggingPlatform.Domain.Entities;
 using FluentValidation;
 using MediatR;
@@ -33,11 +35,13 @@ namespace BloggingPlatform.Application.Commands.Users
         private readonly IConfiguration _configuration;
         private readonly JWT _jwt;
         private readonly IMapper _mapper;
-        private readonly IValidator<RegisterDTO> _registerValidator;
+        //private readonly IValidator<RegisterDTO> _registerValidator;
+        private readonly RegisterUserValidator _registerValidator;
         private readonly ILogger<RegisterUserCommandHandler> _logger;
+        private readonly TokenService _tokenService;
 
         public RegisterUserCommandHandler(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IConfiguration configuration, 
-            IOptions<JWT> jwt, IMapper mapper, IValidator<RegisterDTO> registerValidator, ILogger<RegisterUserCommandHandler> logger)
+            IOptions<JWT> jwt, IMapper mapper, RegisterUserValidator registerValidator, ILogger<RegisterUserCommandHandler> logger, TokenService tokenService)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
@@ -46,6 +50,7 @@ namespace BloggingPlatform.Application.Commands.Users
             _mapper = mapper;
             _registerValidator = registerValidator;
             _logger = logger;
+            _tokenService = tokenService;
         }
 
         public async Task<ResponseModel<AuthModel>> Handle(RegisterUserCommand model, CancellationToken cancellationToken)
@@ -95,7 +100,7 @@ namespace BloggingPlatform.Application.Commands.Users
                 JwtSecurityToken userToken;
                 try
                 {
-                    userToken = await CreateJwtToken(user);
+                    userToken = await _tokenService.CreateJwtToken(user);
                 }
                 catch (Exception ex)
                 {
@@ -125,42 +130,6 @@ namespace BloggingPlatform.Application.Commands.Users
                 await _unitOfWork.RollbackTransactionAsync();
                 return DynamicResponse<AuthModel>.Failed(null, errorCode: (int)ResponseStatusCode.InternalServerError, errorMessage: "An unexpected error occurred.");
             }
-        }
-
-
-        private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
-        {
-            var userClaims = await _userManager.GetClaimsAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
-            var roleClaims = new List<Claim>();
-
-            foreach (var role in roles)
-                roleClaims.Add(new Claim("roles", role));
-
-            var claims = new[]
-            {
-                new Claim("userId", user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("userName", user.UserName),
-            }
-            .Union(userClaims)
-            .Union(roleClaims);
-
-            var jwtKey = _jwt.Key.ToString();
-            var key = Convert.FromBase64String(jwtKey);
-            var symmetricSecurityKey = new SymmetricSecurityKey(key);
-            //var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));
-            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-
-            var jwtSecurityToken = new JwtSecurityToken (
-                issuer: _jwt.Issuer,
-                audience: _jwt.Audience,
-                claims: claims,
-                expires: DateTime.Now.AddDays(_jwt.DurationInDays),
-                signingCredentials: signingCredentials
-            );
-
-            return jwtSecurityToken;
         }
 
         private void BlockUser(ApplicationUser user)

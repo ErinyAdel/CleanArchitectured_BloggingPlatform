@@ -1,5 +1,4 @@
-﻿using BloggingPlatform.Application.DTOs.UserDTOs;
-using BloggingPlatform.Domain.Entities;
+﻿using BloggingPlatform.Application.Interfaces;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -9,14 +8,10 @@ using System.Threading.Tasks;
 
 namespace BloggingPlatform.Application.Validators.UsersValidators
 {
-    public class UserValidator : AbstractValidator<RegisterDTO>
+    public class BaseUserValidator<T> : AbstractValidator<T> where T : IUserCredentials
     {
-        public UserValidator()
+        public BaseUserValidator()
         {
-            RuleFor(x => x.UserName)
-            .NotEmpty().WithMessage("Username is required.")
-            .Length(3, 60).WithMessage("Username must be between 3 and 60 characters.");
-
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress().WithMessage("Invalid email format.");
@@ -24,8 +19,7 @@ namespace BloggingPlatform.Application.Validators.UsersValidators
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required.")
                 .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
-
-            //RuleFor(x => x.PhoneNumber).Matches(@"^\+?\d{10,15}$").WithMessage("Invalid Phone Number.");
         }
     }
+
 }

@@ -46,5 +46,15 @@ namespace BloggingPlatform.Persistence.Services
             };
             return await _mediator.Send(command);
         }
+        
+        public async Task<ResponseModel<AuthModel>> UserLoginAsync(LoginDTO model)
+        {
+            var command = new UserLoginCommand
+            {
+                Email = model.Email,
+                Password = model.Password
+            };
+            return await _mediator.Send(command);
+        }
     }
 }

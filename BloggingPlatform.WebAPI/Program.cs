@@ -1,5 +1,6 @@
 using BloggingPlatform.Application.Commands.Posts;
 using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
+using BloggingPlatform.Application.Helpers;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Application.Mapper;
 using BloggingPlatform.Application.Repositories.Posts;
@@ -59,13 +60,14 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<TokenService>();
 
 
 /* Fluent Validation */
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
 builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserValidator>();
 
 
 builder.Services.AddControllers();
