@@ -73,6 +73,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IUserLoginValidator, UserLoginValidator>();
+builder.Services.AddScoped<IRegisterUserValidator, RegisterUserValidator>();
 
 /* Fluent Validation */
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
