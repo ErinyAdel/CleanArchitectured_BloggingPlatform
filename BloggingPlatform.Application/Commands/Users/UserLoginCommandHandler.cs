@@ -28,12 +28,12 @@ namespace BloggingPlatform.Application.Commands.Users
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
-        private readonly UserLoginValidator _validator;
+        private readonly IUserLoginValidator _validator;
         private readonly ILogger<UserLoginCommandHandler> _logger;
-        private readonly TokenService _tokenService;
+        private readonly ITokenService _tokenService;
 
         public UserLoginCommandHandler(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IMapper mapper,
-            UserLoginValidator validator, ILogger<UserLoginCommandHandler> logger, TokenService tokenService)
+            IUserLoginValidator validator, ILogger<UserLoginCommandHandler> logger, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;

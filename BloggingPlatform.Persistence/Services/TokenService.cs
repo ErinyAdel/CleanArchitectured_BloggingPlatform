@@ -1,4 +1,5 @@
 ﻿using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
+using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -11,9 +12,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.Helpers
+namespace BloggingPlatform.Persistence.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly JWT _jwt;

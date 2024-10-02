@@ -36,12 +36,12 @@ namespace BloggingPlatform.Application.Commands.Users
         private readonly JWT _jwt;
         private readonly IMapper _mapper;
         //private readonly IValidator<RegisterDTO> _registerValidator;
-        private readonly RegisterUserValidator _registerValidator;
+        private readonly IRegisterUserValidator _registerValidator;
         private readonly ILogger<RegisterUserCommandHandler> _logger;
-        private readonly TokenService _tokenService;
+        private readonly ITokenService _tokenService;
 
         public RegisterUserCommandHandler(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IConfiguration configuration, 
-            IOptions<JWT> jwt, IMapper mapper, RegisterUserValidator registerValidator, ILogger<RegisterUserCommandHandler> logger, TokenService tokenService)
+            IOptions<JWT> jwt, IMapper mapper, IRegisterUserValidator registerValidator, ILogger<RegisterUserCommandHandler> logger, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
