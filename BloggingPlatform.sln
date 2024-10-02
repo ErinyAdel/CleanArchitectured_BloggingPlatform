@@ -5,17 +5,19 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C5BEF2BA-2FBA-48AA-9367-1684442EA807}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloggingPlatform.Domain", "BloggingPlatform.Domain\BloggingPlatform.Domain.csproj", "{579795E0-2351-425E-A0B1-276DA503AE9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BloggingPlatform.Domain", "BloggingPlatform.Domain\BloggingPlatform.Domain.csproj", "{579795E0-2351-425E-A0B1-276DA503AE9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloggingPlatform.Application", "BloggingPlatform.Application\BloggingPlatform.Application.csproj", "{FEBCEA16-D089-468C-8113-1D8D14B7BC5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BloggingPlatform.Application", "BloggingPlatform.Application\BloggingPlatform.Application.csproj", "{FEBCEA16-D089-468C-8113-1D8D14B7BC5F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{99C861E1-5AC9-494F-A51F-921DF94642EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloggingPlatform.Persistence", "BloggingPlatform.Persistence\BloggingPlatform.Persistence.csproj", "{DA544D53-355F-46CF-9BD5-B55597D99A2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BloggingPlatform.Persistence", "BloggingPlatform.Persistence\BloggingPlatform.Persistence.csproj", "{DA544D53-355F-46CF-9BD5-B55597D99A2B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{3D6EC461-BA7E-41BC-9117-DB41C6A83E28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloggingPlatform.WebAPI", "BloggingPlatform.WebAPI\BloggingPlatform.WebAPI.csproj", "{53A15AD2-7E92-48F0-A286-5A091682CDD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BloggingPlatform.WebAPI", "BloggingPlatform.WebAPI\BloggingPlatform.WebAPI.csproj", "{53A15AD2-7E92-48F0-A286-5A091682CDD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F63A6DF2-23C6-4B7C-8473-9BF51C3B0954}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,7 +47,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{579795E0-2351-425E-A0B1-276DA503AE9D} = {C5BEF2BA-2FBA-48AA-9367-1684442EA807}
-		{FEBCEA16-D089-468C-8113-1D8D14B7BC5F} = {C5BEF2BA-2FBA-48AA-9367-1684442EA807}
+		{FEBCEA16-D089-468C-8113-1D8D14B7BC5F} = {F63A6DF2-23C6-4B7C-8473-9BF51C3B0954}
 		{DA544D53-355F-46CF-9BD5-B55597D99A2B} = {99C861E1-5AC9-494F-A51F-921DF94642EF}
 		{53A15AD2-7E92-48F0-A286-5A091682CDD5} = {3D6EC461-BA7E-41BC-9117-DB41C6A83E28}
 	EndGlobalSection
