@@ -4,5 +4,5 @@
 **/[Bb]in/
 **/[Oo]bj/
 # Other temporary files
-*.log
+*.logs
 *.tmp
