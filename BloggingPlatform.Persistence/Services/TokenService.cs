@@ -1,4 +1,5 @@
-﻿using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
+﻿using BloggingPlatform.Application.Constants;
+using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -36,9 +37,9 @@ namespace BloggingPlatform.Persistence.Services
 
             var claims = new[]
             {
-                new Claim("userId", user.Id),
+                new Claim(CustomClaimTypes.userId.ToString(), user.Id),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("userName", user.UserName),
+                new Claim(CustomClaimTypes.username.ToString(), user.UserName),
             }
             .Union(userClaims)
             .Union(roleClaims);

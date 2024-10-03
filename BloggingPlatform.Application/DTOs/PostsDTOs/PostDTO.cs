@@ -8,7 +8,7 @@ namespace BloggingPlatform.Application.DTOs.PostsDTOs
 {
     public class PostDTO
     {
-        public string PostTitle { get; set; }
-        public string PostContent { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
     }
 }

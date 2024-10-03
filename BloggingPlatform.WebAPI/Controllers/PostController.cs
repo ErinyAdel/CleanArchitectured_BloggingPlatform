@@ -1,8 +1,13 @@
-﻿using BloggingPlatform.Application.Commands.Posts;
+﻿using AutoMapper;
+using BloggingPlatform.Application.Commands.Posts;
+using BloggingPlatform.Application.Constants;
+using BloggingPlatform.Application.DTOs.PostsDTOs;
 using BloggingPlatform.Application.Queries.Posts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
@@ -12,16 +17,24 @@ namespace BloggingPlatform.WebAPI.Controllers
     public class PostController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public PostController(IMediator mediator)
+        public PostController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
+        public async Task<IActionResult> CreatePost([FromBody] PostDTO model)
         {
-            var postId = await _mediator.Send(command);
+            var mappedCommand = _mapper.Map<CreatePostCommand>(model);
+
+            var authorId = User.FindFirstValue(CustomClaimTypes.userId.ToString());
+            mappedCommand.AuthorId = authorId;
+
+            var postId = await _mediator.Send(mappedCommand);
+
             return Ok(new { Id = postId });
         }
 

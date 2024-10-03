@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BloggingPlatform.Application.Commands.Posts;
 using BloggingPlatform.Application.Commands.Users;
 using BloggingPlatform.Application.DTOs.PostsDTOs;
 using BloggingPlatform.Application.DTOs.UserDTOs;
@@ -24,9 +25,8 @@ namespace BloggingPlatform.Application.Mapper
             #endregion
 
             #region Post
-            CreateMap<Post, PostDTO>()
-               .ForMember(dest => dest.PostTitle, opt => opt.MapFrom(src => src.Title))
-               .ForMember(dest => dest.PostContent, opt => opt.MapFrom(src => src.Content));
+            CreateMap<Post, PostDTO>();
+            CreateMap<CreatePostCommand, PostDTO>().ReverseMap();
             #endregion
         }
     }
