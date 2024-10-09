@@ -1,4 +1,5 @@
-﻿using BloggingPlatform.Application.Constants;
+﻿using BloggingPlatform.Application.Commands.Users;
+using BloggingPlatform.Application.Constants;
 using BloggingPlatform.Application.DTOs.UserDTOs;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Application.Validators.UsersValidators;
@@ -6,6 +7,7 @@ using BloggingPlatform.Domain.Entities;
 using BloggingPlatform.Persistence.Services;
 using FluentValidation;
 using FluentValidation.Results;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
@@ -17,15 +19,15 @@ namespace BloggingPlatform.WebAPI.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly IUserService _userService;
         private readonly RegisterUserValidator _registerValidator;
         private readonly UserLoginValidator _loginValidator;
+        private readonly IMediator _mediator;
 
-        public UserController(IUserService userService, RegisterUserValidator registerValidator, UserLoginValidator loginValidator)
+        public UserController(RegisterUserValidator registerValidator, UserLoginValidator loginValidator, IMediator mediator)
         {
-            _userService = userService;
             _registerValidator = _registerValidator;
             _loginValidator = loginValidator;
+            _mediator = mediator;
         }
 
         [HttpPost]
@@ -38,7 +40,14 @@ namespace BloggingPlatform.WebAPI.Controllers
             if (!resultVal.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _userService.RegisterUserAsync(model);
+            var command = new RegisterUserCommand
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                Password = model.Password
+            };
+            var result = await _mediator.Send(command);
+
             if (!result.IsSuccess)
                 return StatusCode(result?.ErrorCode != null && result.ErrorCode != 0 ? (int)result.ErrorCode : (int)ResponseStatusCode.NoContent, new { Message = result.ErrorMessage });
             return Ok(result);
@@ -54,7 +63,13 @@ namespace BloggingPlatform.WebAPI.Controllers
             if (!resultVal.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _userService.UserLoginAsync(model);
+            var command = new UserLoginCommand
+            {
+                Email = model.Email,
+                Password = model.Password
+            };
+            var result = await _mediator.Send(command);
+
             if (!result.IsSuccess)
                 return StatusCode(result?.ErrorCode != null && result.ErrorCode != 0 ? (int)result.ErrorCode : (int)ResponseStatusCode.NoContent, new { Message = result.ErrorMessage });
             return Ok(result);
