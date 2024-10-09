@@ -1,4 +1,4 @@
-﻿using BloggingPlatform.Application.Commands.Users;
+﻿using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
 using BloggingPlatform.Application.Constants;
 using BloggingPlatform.Application.DTOs.UserDTOs;
 using BloggingPlatform.Application.Interfaces;

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.Queries.Posts
+namespace BloggingPlatform.Application.CommandsAndQueries.Queries.Posts
 {
     public class GetPostQueryHandler : IRequestHandler<GetPostQuery, PostDTO>
     {

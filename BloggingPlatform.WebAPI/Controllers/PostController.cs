@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BloggingPlatform.Application.Commands.Posts;
+using BloggingPlatform.Application.CommandsAndQueries.Commands.Posts;
 using BloggingPlatform.Application.Constants;
 using BloggingPlatform.Application.DTOs.PostsDTOs;
-using BloggingPlatform.Application.Queries.Posts;
+using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

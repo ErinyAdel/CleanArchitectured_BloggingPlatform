@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.Commands.Posts
+namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Posts
 {
     public class CreatePostCommand : IRequest<int>
     {

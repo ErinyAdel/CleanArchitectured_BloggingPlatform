@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.Commands.Posts
+namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Posts
 {
     public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
     {

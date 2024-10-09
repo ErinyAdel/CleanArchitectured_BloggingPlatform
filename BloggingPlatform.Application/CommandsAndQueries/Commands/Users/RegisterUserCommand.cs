@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.Commands.Users
+namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
 {
-    public class UserLoginCommand : IRequest<ResponseModel<AuthModel>>
+    public class RegisterUserCommand : IRequest<ResponseModel<AuthModel>>
     {
+        public string UserName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
     }

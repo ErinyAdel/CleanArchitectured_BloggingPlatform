@@ -21,7 +21,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.Commands.Users
+namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
 {
     public class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, ResponseModel<AuthModel>>
     {

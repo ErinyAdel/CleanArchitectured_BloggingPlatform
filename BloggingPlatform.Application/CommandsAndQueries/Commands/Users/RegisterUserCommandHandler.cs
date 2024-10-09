@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace BloggingPlatform.Application.Commands.Users
+namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, ResponseModel<AuthModel>>
     {
@@ -40,7 +40,7 @@ namespace BloggingPlatform.Application.Commands.Users
         private readonly ILogger<RegisterUserCommandHandler> _logger;
         private readonly ITokenService _tokenService;
 
-        public RegisterUserCommandHandler(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IConfiguration configuration, 
+        public RegisterUserCommandHandler(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IConfiguration configuration,
             IOptions<JWT> jwt, IMapper mapper, IRegisterUserValidator registerValidator, ILogger<RegisterUserCommandHandler> logger, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BloggingPlatform.Application.Commands.Posts;
-using BloggingPlatform.Application.Commands.Users;
+using BloggingPlatform.Application.CommandsAndQueries.Commands.Posts;
+using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
 using BloggingPlatform.Application.DTOs.PostsDTOs;
 using BloggingPlatform.Application.DTOs.UserDTOs;
 using BloggingPlatform.Domain.Entities;
