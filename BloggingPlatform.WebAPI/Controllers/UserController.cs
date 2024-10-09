@@ -25,7 +25,7 @@ namespace BloggingPlatform.WebAPI.Controllers
 
         public UserController(RegisterUserValidator registerValidator, UserLoginValidator loginValidator, IMediator mediator)
         {
-            _registerValidator = _registerValidator;
+            _registerValidator = registerValidator;
             _loginValidator = loginValidator;
             _mediator = mediator;
         }

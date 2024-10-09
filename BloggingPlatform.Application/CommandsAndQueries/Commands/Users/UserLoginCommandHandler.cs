@@ -25,17 +25,15 @@ namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
 {
     public class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, ResponseModel<AuthModel>>
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IUserLoginValidator _validator;
         private readonly ILogger<UserLoginCommandHandler> _logger;
         private readonly ITokenService _tokenService;
 
-        public UserLoginCommandHandler(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IMapper mapper,
+        public UserLoginCommandHandler(UserManager<ApplicationUser> userManager, IMapper mapper,
             IUserLoginValidator validator, ILogger<UserLoginCommandHandler> logger, ITokenService tokenService)
         {
-            _unitOfWork = unitOfWork;
             _userManager = userManager;
             _mapper = mapper;
             _validator = validator;
@@ -48,8 +46,6 @@ namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
             try
             {
                 _logger.LogInformation($"Start UserLoginAsync Service ==> LoginDTO model: {model}");
-
-                await _unitOfWork.BeginTransactionAsync();
 
                 var loginDto = _mapper.Map<LoginDTO>(model);
                 var validationResult = await _validator.ValidateAsync(loginDto);
@@ -80,11 +76,8 @@ namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
                 catch (Exception ex)
                 {
                     _logger.LogError($"Token Generation Failed: {ex.Message}");
-                    await _unitOfWork.RollbackTransactionAsync();
                     return DynamicResponse<AuthModel>.Failed(null, errorCode: (int)ResponseStatusCode.InternalServerError, errorMessage: "Token generation failed.");
                 }
-
-                await _unitOfWork.CommitTransactionAsync();
 
                 return DynamicResponse<AuthModel>.Success(new AuthModel
                 {
@@ -95,7 +88,6 @@ namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
             catch (Exception ex)
             {
                 _logger.LogError($"An error occurred during login: {ex.Message}");
-                await _unitOfWork.RollbackTransactionAsync();
                 return DynamicResponse<AuthModel>.Failed(null, errorCode: (int)ResponseStatusCode.InternalServerError, errorMessage: "An unexpected error occurred.");
             }
         }
