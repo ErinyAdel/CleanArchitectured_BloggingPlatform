@@ -45,26 +45,25 @@ namespace BloggingPlatform.Persistence.Repositories.Posts
         
         public async Task<PostDTO> GetByIdAsync(int postId)
         {
-            var postDto = new PostDTO();
-
             try
             {
                 _logger.LogError($"Start:: Application ==> PostRepository ==> GetByIdAsync. postId: {postId}");
 
                 var findPost = await _context.Posts.FindAsync(postId);
-                if (findPost == null)
+                if (findPost == null) {
                     _logger.LogError($"Post with Id {postId} not found.");
-                else
-                    postDto = _mapper.Map<PostDTO>(findPost);
+                    return null;
+                }
+
+                var postDto = _mapper.Map<PostDTO>(findPost);
 
                 _logger.LogError($"End:: In Application ==> PostRepository ==> GetByIdAsync. postId: {postId}");
-
                 return postDto;
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error:: Application ==> PostRepository ==> GetByIdAsync. postId: {postId}");
-                return postDto;
+                return null;
             }
         }
     }

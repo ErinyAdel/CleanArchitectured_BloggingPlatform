@@ -44,9 +44,8 @@ namespace BloggingPlatform.WebAPI.Controllers
             var query = new GetPostQuery(postId);
             var postDto = await _mediator.Send(query);
             if (postDto == null)
-            {
                 return NotFound(new { Message = "Post not found" });
-            }
+
             return Ok(postDto);
         }
     }
