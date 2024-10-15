@@ -1,9 +1,11 @@
-﻿using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
-using BloggingPlatform.Application.Helpers.Response;
+﻿using BloggingPlatform.Application.Helpers.Response;
+using BloggingPlatform.Application.Models;
+using BloggingPlatform.Application.Models.Authentication;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Security.Principal;
+using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
@@ -28,10 +29,14 @@ namespace BloggingPlatform.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromBody] PostDTO model)
         {
-            var mappedCommand = _mapper.Map<CreatePostCommand>(model);
-
             var authorId = User.FindFirstValue(CustomClaimTypes.userId.ToString());
-            mappedCommand.AuthorId = authorId;
+
+            var mappedCommand = new CreatePostCommand
+            {
+                Title = model.Title,
+                Content = model.Content,
+                AuthorId = authorId
+            };
 
             var postId = await _mediator.Send(mappedCommand);
 

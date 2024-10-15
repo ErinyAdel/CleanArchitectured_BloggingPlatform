@@ -1,9 +1,9 @@
 using BloggingPlatform.Application.CommandsAndQueries.Commands.Posts;
 using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
-using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
 using BloggingPlatform.Application.Helpers;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Application.Mapper;
+using BloggingPlatform.Application.Models.Authentication;
 using BloggingPlatform.Application.Repositories.Posts;
 using BloggingPlatform.Application.Validators.UsersValidators;
 using BloggingPlatform.Domain.Entities;

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using BloggingPlatform.Application.DTOs.PostsDTOs;
+using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
 using BloggingPlatform.Application.Repositories.Posts;
+using BloggingPlatform.Domain.Common;
 using BloggingPlatform.Domain.Entities;
 using BloggingPlatform.Persistence.Data;
 using Microsoft.Build.Framework;
@@ -43,7 +44,7 @@ namespace BloggingPlatform.Persistence.Repositories.Posts
             }
         }
         
-        public async Task<PostDTO> GetByIdAsync(int postId)
+        public async Task<GetPostQuery> GetByIdAsync(int postId)
         {
             try
             {
@@ -55,7 +56,7 @@ namespace BloggingPlatform.Persistence.Repositories.Posts
                     return null;
                 }
 
-                var postDto = _mapper.Map<PostDTO>(findPost);
+                var postDto = _mapper.Map<GetPostQuery>(findPost);
 
                 _logger.LogError($"End:: In Application ==> PostRepository ==> GetByIdAsync. postId: {postId}");
                 return postDto;

@@ -1,4 +1,4 @@
-﻿using BloggingPlatform.Application.DTOs.PostsDTOs;
+﻿using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
 using BloggingPlatform.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,6 @@ namespace BloggingPlatform.Application.Repositories.Posts
     public interface IPostRepository
     {
         Task AddAsync(Post post);
-        Task<PostDTO> GetByIdAsync(int postId);
+        Task<GetPostQuery> GetByIdAsync(int postId);
     }
 }

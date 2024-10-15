@@ -1,4 +1,4 @@
-﻿using BloggingPlatform.Application.DTOs.UserDTOs;
+﻿using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,6 @@ namespace BloggingPlatform.Application.Interfaces
 {
     public interface IUserLoginValidator
     {
-        Task<ValidationResult> ValidateAsync(LoginDTO dto);
+        Task<ValidationResult> ValidateAsync(UserLoginCommand dto);
     }
 }

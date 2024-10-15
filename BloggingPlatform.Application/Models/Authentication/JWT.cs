@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.DTOs.AuthenticationDTOs
+namespace BloggingPlatform.Application.Models.Authentication
 {
     public class JWT
     {

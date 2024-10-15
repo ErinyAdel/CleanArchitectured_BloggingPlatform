@@ -14,8 +14,6 @@ namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Posts
         public string Title { get; set; }
         public string Content { get; set; }
 
-        //[JsonIgnore]
-        //[IgnoreDataMember]
         public string AuthorId;
     }
 }

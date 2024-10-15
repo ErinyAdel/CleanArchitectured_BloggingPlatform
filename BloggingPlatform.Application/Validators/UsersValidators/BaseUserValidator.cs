@@ -21,5 +21,4 @@ namespace BloggingPlatform.Application.Validators.UsersValidators
                 .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
         }
     }
-
 }

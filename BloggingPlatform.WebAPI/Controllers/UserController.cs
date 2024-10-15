@@ -35,17 +35,18 @@ namespace BloggingPlatform.WebAPI.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
-            ValidationResult resultVal = await _registerValidator.ValidateAsync(model);
-
-            if (!resultVal.IsValid)
-                return BadRequest(ModelState);
-
             var command = new RegisterUserCommand
             {
                 UserName = model.UserName,
                 Email = model.Email,
                 Password = model.Password
             };
+
+            ValidationResult resultVal = await _registerValidator.ValidateAsync(command);
+
+            if (!resultVal.IsValid)
+                return BadRequest(ModelState);
+
             var result = await _mediator.Send(command);
 
             if (!result.IsSuccess)
@@ -58,16 +59,18 @@ namespace BloggingPlatform.WebAPI.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
-            ValidationResult resultVal = await _loginValidator.ValidateAsync(model);
-
-            if (!resultVal.IsValid)
-                return BadRequest(ModelState);
-
             var command = new UserLoginCommand
             {
                 Email = model.Email,
                 Password = model.Password
             };
+
+            ValidationResult resultVal = await _loginValidator.ValidateAsync(command);
+
+            if (!resultVal.IsValid)
+                return BadRequest(ModelState);
+
+            
             var result = await _mediator.Send(command);
 
             if (!result.IsSuccess)

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using BloggingPlatform.Application.CommandsAndQueries.Commands.Posts;
 using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
-using BloggingPlatform.Application.DTOs.PostsDTOs;
-using BloggingPlatform.Application.DTOs.UserDTOs;
+using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
 using BloggingPlatform.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,16 +16,13 @@ namespace BloggingPlatform.Application.Mapper
         public MappingProfile()
         {
             #region User
-            CreateMap<ApplicationUser, RegisterDTO>().ReverseMap();
             CreateMap<ApplicationUser, UserLoginCommand>().ReverseMap();
             CreateMap<RegisterUserCommand, ApplicationUser>().ReverseMap();
-            CreateMap<RegisterUserCommand, RegisterDTO>();
-            CreateMap<UserLoginCommand, LoginDTO>().ReverseMap();
             #endregion
 
             #region Post
-            CreateMap<Post, PostDTO>();
-            CreateMap<CreatePostCommand, PostDTO>().ReverseMap();
+            CreateMap<Post, GetPostQuery>()
+                .ForMember(dest => dest.PostId, opt => opt.MapFrom(src => src.Id)).ReverseMap();
             #endregion
         }
     }

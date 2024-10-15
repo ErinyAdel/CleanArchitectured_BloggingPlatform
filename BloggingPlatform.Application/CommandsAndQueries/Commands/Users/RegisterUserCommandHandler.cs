@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using BloggingPlatform.Application.Constants;
-using BloggingPlatform.Application.DTOs.AuthenticationDTOs;
-using BloggingPlatform.Application.DTOs.UserDTOs;
 using BloggingPlatform.Application.Helpers;
 using BloggingPlatform.Application.Helpers.Response;
 using BloggingPlatform.Application.Interfaces;
+using BloggingPlatform.Application.Models;
+using BloggingPlatform.Application.Models.Authentication;
 using BloggingPlatform.Application.Validators.UsersValidators;
 using BloggingPlatform.Domain.Entities;
 using FluentValidation;
@@ -61,8 +61,7 @@ namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
 
                 await _unitOfWork.BeginTransactionAsync();
 
-                var registerDto = _mapper.Map<RegisterDTO>(model);
-                var validationResult = await _registerValidator.ValidateAsync(registerDto);
+                var validationResult = await _registerValidator.ValidateAsync(model);
 
                 if (!validationResult.IsValid)
                 {

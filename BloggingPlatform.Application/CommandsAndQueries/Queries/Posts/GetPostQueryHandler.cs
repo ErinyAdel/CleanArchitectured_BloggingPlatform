@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BloggingPlatform.Application.DTOs.PostsDTOs;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Application.Repositories.Posts;
 using MediatR;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BloggingPlatform.Application.CommandsAndQueries.Queries.Posts
 {
-    public class GetPostQueryHandler : IRequestHandler<GetPostQuery, PostDTO>
+    public class GetPostQueryHandler : IRequestHandler<GetPostQuery, GetPostQuery>
     {
         private readonly IPostRepository _postRepository;
         private readonly IMapper _mapper;
@@ -22,7 +21,7 @@ namespace BloggingPlatform.Application.CommandsAndQueries.Queries.Posts
             _mapper = mapper;
         }
 
-        public async Task<PostDTO> Handle(GetPostQuery request, CancellationToken cancellationToken)
+        public async Task<GetPostQuery> Handle(GetPostQuery request, CancellationToken cancellationToken)
         {
             var post = await _postRepository.GetByIdAsync(request.PostId);
             return post;
