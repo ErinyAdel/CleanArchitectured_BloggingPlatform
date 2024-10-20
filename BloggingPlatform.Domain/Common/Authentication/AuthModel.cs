@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BloggingPlatform.Application.Models.Authentication
+namespace BloggingPlatform.Domain.Common.Authentication
 {
     public class AuthModel
     {

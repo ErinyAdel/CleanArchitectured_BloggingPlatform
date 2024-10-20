@@ -1,6 +1,5 @@
 ﻿using BloggingPlatform.Application.Helpers.Response;
-using BloggingPlatform.Application.Models;
-using BloggingPlatform.Application.Models.Authentication;
+using BloggingPlatform.Domain.Common.Authentication;
 using MediatR;
 using System;
 using System.Collections.Generic;

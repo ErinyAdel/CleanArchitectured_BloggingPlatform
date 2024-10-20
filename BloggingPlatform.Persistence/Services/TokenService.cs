@@ -1,6 +1,6 @@
 ﻿using BloggingPlatform.Application.Constants;
 using BloggingPlatform.Application.Interfaces;
-using BloggingPlatform.Application.Models.Authentication;
+using BloggingPlatform.Domain.Common.Authentication;
 using BloggingPlatform.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;

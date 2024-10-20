@@ -1,5 +1,5 @@
 ﻿using BloggingPlatform.Application.Helpers.Response;
-using BloggingPlatform.Application.Models.Authentication;
+using BloggingPlatform.Domain.Common.Authentication;
 using MediatR;
 
 namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
