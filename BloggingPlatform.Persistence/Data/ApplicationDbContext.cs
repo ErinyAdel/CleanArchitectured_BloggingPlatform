@@ -12,14 +12,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
+using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
+using Microsoft.Extensions.Logging;
 
 namespace BloggingPlatform.Persistence.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        private readonly ILogger<ApplicationDbContext> _logger;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILogger<ApplicationDbContext> logger) : base(options)
         {
-            
+            _logger = logger;
+
+            try
+            {
+                var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+                if(databaseCreator != null)
+                {
+                    if (!databaseCreator.CanConnect())
+                        databaseCreator.Create();
+
+                    if (!databaseCreator.HasTables())
+                        databaseCreator.CreateTables();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An Error In ApplicationDbContext While Initializing The Database: {ex.Message}");
+            }
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
