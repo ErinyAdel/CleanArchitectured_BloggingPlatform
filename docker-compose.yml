@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  bloggingplatform_db:
+  bloggingplatform-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       SA_PASSWORD: "P@ssw0rd"
@@ -9,34 +9,9 @@ services:
     ports:
       - "8001:1433"
 
-  bloggingplatform_app:
+  bloggingplatform-app:
     build: .
     ports:
       - "8000:8080"
     depends_on:
       - bloggingplatform_db
-
-# services:  
-#   bloggingplatform_cleanarch-db:
-#     container_name: bloggingplatform_dbcontainer
-#     image: mcr.microsoft.com/mssql/server:2022-latest
-#     environment:
-#       - SA_PASSWORD=P@ssw0rd
-#       - ACCEPT_EULA=Y
-#     ports:
-#       - "8001:1433"
-#     networks:
-#       - bloggingplatform_net
-
-#   bloggingplatform_cleanarch-app:
-#     container_name: bloggingplatform_appcontainer
-#     image: eriny1/cleanarch_bloggingplatform
-#     ports:
-#       - 8000:80
-#     depends_on:
-#       - bloggingplatform_cleanarch-db
-#     networks:
-#       - bloggingplatform_net
-
-# networks:
-#   bloggingplatform_net:
