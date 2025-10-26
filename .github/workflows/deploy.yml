@@ -3,21 +3,19 @@ name: Build and Deploy .NET App
 on:
   push:
     branches:
-      - main  # Trigger when code is pushed or merged to main
+      - main  # Trigger When Code is Pushed or Merged To 'main' Branch
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted  # 👈 this uses your local machine runner
+    runs-on: self-hosted  # This Uses Local Machine Runner
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x  # Change this if your project uses another version
-
+      - name: Check .NET version
+        run: dotnet --version
+        
       - name: Restore dependencies
         run: dotnet restore
 
