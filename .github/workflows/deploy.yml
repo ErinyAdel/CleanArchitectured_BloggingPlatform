@@ -1,0 +1,36 @@
+name: Build and Deploy .NET App
+
+on:
+  push:
+    branches:
+      - main  # Trigger when code is pushed or merged to main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted  # 👈 this uses your local machine runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x  # Change this if your project uses another version
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish -c Release -o "./published"
+
+      - name: Deploy to IIS
+        run: |
+          $source = "$(pwd)\published"
+          $destination = "D:\SingleClic\Software Development\PublishedProject\PublishedBloggingPlatform" # IIS Path
+          Copy-Item -Path $source\* -Destination $destination -Recurse -Force
+          iisreset
+        shell: powershell
