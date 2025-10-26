@@ -1,29 +1,16 @@
 ﻿using AutoMapper;
 using BloggingPlatform.Application.Constants;
-using BloggingPlatform.Application.Helpers;
 using BloggingPlatform.Application.Helpers.Response;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Domain.Common.Authentication;
-using BloggingPlatform.Application.Validators.UsersValidators;
 using BloggingPlatform.Domain.Entities;
-using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace BloggingPlatform.Application.CommandsAndQueries.Commands.Users
 {
