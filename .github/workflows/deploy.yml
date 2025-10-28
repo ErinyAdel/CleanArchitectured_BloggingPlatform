@@ -30,14 +30,5 @@ jobs:
         run: |
           $source = "$(pwd)\published"
           $destination = "D:\SingleClic\Software Development\PublishedProject\PublishedBloggingPlatform"
-
-          Write-Host "Stopping IIS..."
-          iisreset /stop
-
-          Write-Host "Copying published files..."
           Copy-Item -Path "$source\*" -Destination $destination -Recurse -Force
-
-          Write-Host "Starting IIS..."
-          iisreset /start
-
-          Write-Host "✅ Deployment is Completed Successfully!"
+          Write-Host "Deployment is Completed Without IIS Reset"
