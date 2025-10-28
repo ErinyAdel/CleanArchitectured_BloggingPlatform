@@ -3,11 +3,11 @@ name: Build and Deploy .NET App
 on:
   push:
     branches:
-      - main  # Trigger When Code is Pushed or Merged To 'main' Branch
+      - main
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted  # This Uses Local Machine Runner
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -26,9 +26,18 @@ jobs:
         run: dotnet publish -c Release -o "./published"
 
       - name: Deploy to IIS
+        shell: powershell
         run: |
           $source = "$(pwd)\published"
-          $destination = "D:\SingleClic\Software Development\PublishedProject\PublishedBloggingPlatform" # IIS Path
-          Copy-Item -Path $source\* -Destination $destination -Recurse -Force
-          iisreset
-        shell: powershell
+          $destination = "D:\SingleClic\Software Development\PublishedProject\PublishedBloggingPlatform"
+
+          Write-Host "Stopping IIS..."
+          iisreset /stop
+
+          Write-Host "Copying published files..."
+          Copy-Item -Path "$source\*" -Destination $destination -Recurse -Force
+
+          Write-Host "Starting IIS..."
+          iisreset /start
+
+          Write-Host "✅ Deployment is Completed Successfully!"
