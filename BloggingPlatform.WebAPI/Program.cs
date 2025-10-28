@@ -1,6 +1,4 @@
-using BloggingPlatform.Application.CommandsAndQueries.Commands.Posts;
 using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
-using BloggingPlatform.Application.Helpers;
 using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.WebAPI.Mapper;
 using BloggingPlatform.Domain.Common.Authentication;
@@ -12,11 +10,9 @@ using BloggingPlatform.Persistence.Repositories.Posts;
 using BloggingPlatform.Persistence.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Text;
