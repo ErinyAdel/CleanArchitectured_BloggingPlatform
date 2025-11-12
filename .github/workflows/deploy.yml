@@ -28,18 +28,7 @@ jobs:
       - name: Deploy to IIS
         shell: powershell
         run: |
-          Import-Module WebAdministration
           $source = "$(pwd)\published"
           $destination = "D:\SingleClic\Software Development\PublishedProject\PublishedBloggingPlatform"
-          $appPool = "BloggingPlatform"
-
-          Write-Host "Stopping App Pool..."
-          Stop-WebAppPool -Name $appPool
-
-          Write-Host "Copying files..."
           Copy-Item -Path "$source\*" -Destination $destination -Recurse -Force
-
-          Write-Host "Starting App Pool..."
-          Start-WebAppPool -Name $appPool
-
-          Write-Host "Deployment is Completed Successfully!"
+          Write-Host "Deployment is Completed Without IIS Reset"
