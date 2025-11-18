@@ -16,7 +16,7 @@ This project follows **Clean Architecture** principles to ensure separation of c
 
 ---
 
-## 🏗️ Design Patterns & Techniques Used
+## Design Patterns & Techniques Used
 
 ### ⚡ Clean Architecture
 A layered architecture approach where:
@@ -50,7 +50,7 @@ The **Mediator pattern** is implemented using **MediatR**:
 
 ---
 
-## 🛠️ Technologies & Frameworks
+## Technologies & Frameworks
 
 | Technology / Library | Usage |
 |----------------------|--------|
@@ -61,5 +61,35 @@ The **Mediator pattern** is implemented using **MediatR**:
 | **Entity Framework Core** | Data Access & ORM |
 | **SQL Server** | Database |
 | **Docker** | Containerization & Environment Consistency |
+| **CI/CD & Deployment** | GitHub Actions & Self-Hosted Windows Runner & IIS (Internet Information Services) |
 
+---
+# 🚀 CI/CD Pipeline for .NET Application (GitHub Actions → IIS on Windows)
+
+This repository includes a fully automated **CI/CD pipeline** that builds and deploys the .NET WebAPI to **IIS** on a Windows machine using a **self-hosted GitHub Actions runner**.  
+Deployment triggers automatically whenever changes are pushed to the `main` branch.
+
+---
+
+## 🔄 CI/CD Workflow Summary
+
+Whenever code is pushed or merged into the **main** branch:
+
+1. GitHub Actions Starts The `build-and-deploy` Workflow.
+2. The Workflow Runs on a Windows **self-hosted runner**.
+3. The Runner:
+   - Restores Dependencies  
+   - Builds The Project  
+   - Publishes The App  
+   - Copies The Published Files To The IIS Site Folder  
+4. IIS Automatically Reloads The App When Files Change.
+
+---
+
+## 🖥️ Setting Up the Self-Hosted Runner (Windows)
+
+### 1️⃣ Create a runner directory
+```powershell
+mkdir "D:\GitHubRunner"
+cd "D:\GitHubRunner"
 
