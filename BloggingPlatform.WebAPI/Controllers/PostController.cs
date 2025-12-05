@@ -7,8 +7,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.Security.Principal;
-using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
