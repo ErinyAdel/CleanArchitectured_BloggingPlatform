@@ -6,6 +6,29 @@ on:
       - main
 
 jobs:
+  deploy-to-eriny:
+    runs-on: [self-hosted, ErinyDevice]
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish -c Release -o "./published"
+
+      - name: Deploy to IIS (ERINY)
+        shell: powershell
+        run: |
+          $source = "$(pwd)\published"
+          $destination = "C:\Work\SoftwareDevelopment\Deployment\PublishedCleanArchitectured_BloggingPlatform"
+          Copy-Item "$source\*" $destination -Recurse -Force
+          Write-Host "Deployment done for ERINY runner"
+          
   build-and-deploy:
     runs-on: self-hosted
 
