@@ -1,17 +1,11 @@
 ﻿using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
 using BloggingPlatform.Application.Constants;
 using BloggingPlatform.Application.DTOs.UserDTOs;
-using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.Application.Validators.UsersValidators;
-using BloggingPlatform.Domain.Entities;
-using BloggingPlatform.Persistence.Services;
-using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using System;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
