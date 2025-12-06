@@ -1,0 +1,34 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+# Install specific .NET version
+- task: UseDotNet@2
+  displayName: "Install .NET"
+  inputs:
+    version: '8.x'
+    packageType: 'sdk'
+
+# Restore packages
+- script: dotnet restore
+  displayName: "Restore"
+
+# Build solution
+- script: dotnet build --configuration Release --no-restore
+  displayName: "Build"
+
+# Publish the API
+- script: dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)/publish
+  displayName: "Publish"
+
+# Deploy to Azure Web App
+- task: AzureWebApp@1
+  displayName: "Deploy to Azure Web App"
+  inputs:
+    azureSubscription: 'BloggingPlatformServiceConnection'   # Service Connection Name
+    appName: 'BloggingPlatformAppService'   # Azure Web App Name
+    package: '$(Build.ArtifactStagingDirectory)/publish'
