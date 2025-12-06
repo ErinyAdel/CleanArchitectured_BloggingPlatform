@@ -120,8 +120,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             "http://localhost:3000",
             "https://localhost:3000",
-            "https://bloggingplatformfrontendwebapp-byauatf8bqf4h6ga.canadacentral-01.azurewebsites.net/",
-            "https://bloggingplatformappservice-gre7fyhtancwfge6.canadacentral-01.azurewebsites.net/"
+            "https://bloggingplatformfrontendwebapp-byauatf8bqf4h6ga.canadacentral-01.azurewebsites.net"
         )
         .AllowAnyMethod()
         .AllowAnyHeader()
