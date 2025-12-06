@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : Controller
