@@ -1,11 +1,12 @@
-﻿using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
+﻿using BloggingPlatform.Application.CQRS.Commands.Users;
 using BloggingPlatform.Application.Constants;
-using BloggingPlatform.Application.DTOs.UserDTOs;
-using BloggingPlatform.Application.Validators.UsersValidators;
+using BloggingPlatform.DTO.DTO.User;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation;
+using AutoMapper;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
@@ -13,15 +14,18 @@ namespace BloggingPlatform.WebAPI.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly RegisterUserValidator _registerValidator;
-        private readonly UserLoginValidator _loginValidator;
+        private readonly IValidator<RegisterDTO> _registerValidator;
+        private readonly IValidator<LoginDTO> _loginValidator;
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public UserController(RegisterUserValidator registerValidator, UserLoginValidator loginValidator, IMediator mediator)
+        public UserController(IValidator<RegisterDTO> registerValidator, IValidator<LoginDTO> loginValidator, 
+            IMediator mediator, IMapper mapper)
         {
             _registerValidator = registerValidator;
             _loginValidator = loginValidator;
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -29,18 +33,11 @@ namespace BloggingPlatform.WebAPI.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
-            var command = new RegisterUserCommand
-            {
-                UserName = model.UserName,
-                Email = model.Email,
-                Password = model.Password
-            };
-
-            ValidationResult resultVal = await _registerValidator.ValidateAsync(command);
-
+            ValidationResult resultVal = await _registerValidator.ValidateAsync(model);
             if (!resultVal.IsValid)
                 return BadRequest(ModelState);
 
+            var command = _mapper.Map<RegisterUserCommand>(model);
             var result = await _mediator.Send(command);
 
             if (!result.IsSuccess)
@@ -53,18 +50,11 @@ namespace BloggingPlatform.WebAPI.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
-            var command = new UserLoginCommand
-            {
-                Email = model.Email,
-                Password = model.Password
-            };
-
-            ValidationResult resultVal = await _loginValidator.ValidateAsync(command);
-
+            ValidationResult resultVal = await _loginValidator.ValidateAsync(model);
             if (!resultVal.IsValid)
                 return BadRequest(ModelState);
 
-            
+            var command = _mapper.Map<UserLoginCommand>(model);
             var result = await _mediator.Send(command);
 
             if (!result.IsSuccess)

@@ -1,10 +1,5 @@
-﻿using BloggingPlatform.Application.Interfaces;
-using BloggingPlatform.Persistence.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BloggingPlatform.Persistence.Data;
+using BloggingPlatform.ServiceInterface.Interface;
 
 namespace BloggingPlatform.Persistence.Services
 {

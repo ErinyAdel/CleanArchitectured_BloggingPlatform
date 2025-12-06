@@ -1,14 +1,11 @@
 using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
-using BloggingPlatform.Application.Interfaces;
 using BloggingPlatform.WebAPI.Mapper;
 using BloggingPlatform.Domain.Common.Authentication;
 using BloggingPlatform.Application.Repositories.Posts;
-using BloggingPlatform.Application.Validators.UsersValidators;
 using BloggingPlatform.Domain.Entities;
 using BloggingPlatform.Persistence.Data;
 using BloggingPlatform.Persistence.Repositories.Posts;
 using BloggingPlatform.Persistence.Services;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Text;
+using BloggingPlatform.ServiceInterface.Interface;
+using BloggingPlatform.DTO.Validator.User;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,14 +66,12 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
-builder.Services.AddScoped<IUserLoginValidator, UserLoginValidator>();
-builder.Services.AddScoped<IRegisterUserValidator, RegisterUserValidator>();
 
 /* Fluent Validation */
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
-
 builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<UserLoginValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<FollowerUserValidator>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

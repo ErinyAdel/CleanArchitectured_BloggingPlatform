@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using BloggingPlatform.Application.CommandsAndQueries.Commands.Posts;
+using BloggingPlatform.Application.CQRS.Commands.Posts;
 using BloggingPlatform.Application.Constants;
-using BloggingPlatform.Application.DTOs.PostsDTOs;
-using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
+using BloggingPlatform.Application.CQRS.Queries.Posts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using BloggingPlatform.DTO.DTO.Post;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : Controller
@@ -29,15 +29,10 @@ namespace BloggingPlatform.WebAPI.Controllers
         {
             var authorId = User.FindFirstValue(CustomClaimTypes.userId.ToString());
 
-            var mappedCommand = new CreatePostCommand
-            {
-                Title = model.Title,
-                Content = model.Content,
-                AuthorId = authorId
-            };
+            var mappedCommand = _mapper.Map<CreatePostCommand>(model);
+            mappedCommand.AuthorId = authorId;
 
             var postId = await _mediator.Send(mappedCommand);
-
             return Ok(new { Id = postId });
         }
 
@@ -46,9 +41,9 @@ namespace BloggingPlatform.WebAPI.Controllers
         {
             var query = new GetPostQuery(postId);
             var postDto = await _mediator.Send(query);
+
             if (postDto == null)
                 return NotFound(new { Message = "Post not found" });
-
             return Ok(postDto);
         }
     }

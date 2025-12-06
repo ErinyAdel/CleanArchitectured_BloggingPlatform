@@ -1,20 +1,8 @@
-﻿using Azure.Core;
-using BloggingPlatform.Domain.Entities;
+﻿using BloggingPlatform.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Packaging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
-using BloggingPlatform.Application.CommandsAndQueries.Commands.Users;
 using Microsoft.Extensions.Logging;
 
 namespace BloggingPlatform.Persistence.Data

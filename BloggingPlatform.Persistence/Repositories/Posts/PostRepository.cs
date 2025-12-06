@@ -1,16 +1,9 @@
 ﻿using AutoMapper;
-using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
+using BloggingPlatform.Application.CQRS.Queries.Posts;
 using BloggingPlatform.Application.Repositories.Posts;
-using BloggingPlatform.Domain.Common;
 using BloggingPlatform.Domain.Entities;
 using BloggingPlatform.Persistence.Data;
-using Microsoft.Build.Framework;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BloggingPlatform.Persistence.Repositories.Posts
 {
