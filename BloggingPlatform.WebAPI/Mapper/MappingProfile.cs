@@ -2,6 +2,7 @@
 using BloggingPlatform.Application.CQRS.Commands.Posts;
 using BloggingPlatform.Application.CQRS.Commands.Users;
 using BloggingPlatform.Application.CQRS.Queries.Posts;
+using BloggingPlatform.Application.CQRS.Queries.Users;
 using BloggingPlatform.Domain.Entities;
 using BloggingPlatform.DTO.DTO.Post;
 using BloggingPlatform.DTO.DTO.User;
@@ -13,10 +14,10 @@ namespace BloggingPlatform.WebAPI.Mapper
         public MappingProfile()
         {
             #region User
-            CreateMap<ApplicationUser, UserLoginCommand>().ReverseMap();
+            CreateMap<ApplicationUser, UserLoginQuery>().ReverseMap();
             CreateMap<RegisterUserCommand, ApplicationUser>().ReverseMap();
             CreateMap<RegisterUserCommand, RegisterDTO>().ReverseMap();
-            CreateMap<UserLoginCommand, LoginDTO>().ReverseMap();
+            CreateMap<UserLoginQuery, LoginDTO>().ReverseMap();
             #endregion
 
             #region Post

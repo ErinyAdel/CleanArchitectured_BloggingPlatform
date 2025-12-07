@@ -2,9 +2,9 @@
 using BloggingPlatform.Domain.Common.Authentication;
 using MediatR;
 
-namespace BloggingPlatform.Application.CQRS.Commands.Users
+namespace BloggingPlatform.Application.CQRS.Queries.Users
 {
-    public class UserLoginCommand : IRequest<ResponseModel<AuthModel>>
+    public class UserLoginQuery : IRequest<ResponseModel<AuthModel>>
     {
         public string Email { get; set; }
         public string Password { get; set; }

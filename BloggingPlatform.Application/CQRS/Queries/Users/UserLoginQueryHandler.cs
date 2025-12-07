@@ -9,17 +9,17 @@ using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 using BloggingPlatform.ServiceInterface.Interface;
 
-namespace BloggingPlatform.Application.CQRS.Commands.Users
+namespace BloggingPlatform.Application.CQRS.Queries.Users
 {
-    public class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, ResponseModel<AuthModel>>
+    public class UserLoginQueryHandler : IRequestHandler<UserLoginQuery, ResponseModel<AuthModel>>
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
-        private readonly ILogger<UserLoginCommandHandler> _logger;
+        private readonly ILogger<UserLoginQueryHandler> _logger;
         private readonly ITokenService _tokenService;
 
-        public UserLoginCommandHandler(UserManager<ApplicationUser> userManager, IMapper mapper,
-            ILogger<UserLoginCommandHandler> logger, ITokenService tokenService)
+        public UserLoginQueryHandler(UserManager<ApplicationUser> userManager, IMapper mapper,
+            ILogger<UserLoginQueryHandler> logger, ITokenService tokenService)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -27,7 +27,7 @@ namespace BloggingPlatform.Application.CQRS.Commands.Users
             _tokenService = tokenService;
         }
 
-        public async Task<ResponseModel<AuthModel>> Handle(UserLoginCommand model, CancellationToken cancellationToken)
+        public async Task<ResponseModel<AuthModel>> Handle(UserLoginQuery model, CancellationToken cancellationToken)
         {
             try
             {
@@ -55,10 +55,15 @@ namespace BloggingPlatform.Application.CQRS.Commands.Users
                     return DynamicResponse<AuthModel>.Failed(null, errorCode: (int)ResponseStatusCode.InternalServerError, errorMessage: "Token generation failed.");
                 }
 
+                var roles = await _userManager.GetRolesAsync(user);
+
                 return DynamicResponse<AuthModel>.Success(new AuthModel
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(userToken),
-                    IsAuthenticated = true
+                    IsAuthenticated = true,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Roles = string.Join(",", roles)
                 });
             }
             catch (Exception ex)
@@ -68,5 +73,4 @@ namespace BloggingPlatform.Application.CQRS.Commands.Users
             }
         }
     }
-
 }

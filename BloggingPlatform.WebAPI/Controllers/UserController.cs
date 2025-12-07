@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using FluentValidation;
 using AutoMapper;
+using BloggingPlatform.Application.CQRS.Queries.Users;
 
 namespace BloggingPlatform.WebAPI.Controllers
 {
@@ -54,7 +55,7 @@ namespace BloggingPlatform.WebAPI.Controllers
             if (!resultVal.IsValid)
                 return BadRequest(ModelState);
 
-            var command = _mapper.Map<UserLoginCommand>(model);
+            var command = _mapper.Map<UserLoginQuery>(model);
             var result = await _mediator.Send(command);
 
             if (!result.IsSuccess)
