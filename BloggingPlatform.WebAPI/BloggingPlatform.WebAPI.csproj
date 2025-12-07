@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BloggingPlatform.Application\BloggingPlatform.Application.csproj" />
     <ProjectReference Include="..\BloggingPlatform.Persistence\BloggingPlatform.Persistence.csproj" />
+    <ProjectReference Include="..\BloggingPlatform.Strapping\BloggingPlatform.Strapping.csproj" />
   </ItemGroup>
 
 </Project>

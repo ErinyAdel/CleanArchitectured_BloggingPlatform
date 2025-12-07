@@ -7,7 +7,7 @@ using BloggingPlatform.Domain.Entities;
 using BloggingPlatform.DTO.DTO.Post;
 using BloggingPlatform.DTO.DTO.User;
 
-namespace BloggingPlatform.WebAPI.Mapper
+namespace BloggingPlatform.Strapping.Mapper
 {
     public class MappingProfile : Profile
     {
@@ -24,6 +24,7 @@ namespace BloggingPlatform.WebAPI.Mapper
             CreateMap<Post, GetPostQuery>()
                     .ForMember(dest => dest.PostId, opt => opt.MapFrom(src => src.Id)).ReverseMap();
             CreateMap<CreatePostCommand, PostDTO>().ReverseMap();
+            CreateMap<Post, PostDTO>().ReverseMap();
             #endregion
         }
     }

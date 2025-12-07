@@ -1,5 +1,4 @@
 using BloggingPlatform.Application.CommandsAndQueries.Queries.Posts;
-using BloggingPlatform.WebAPI.Mapper;
 using BloggingPlatform.Domain.Common.Authentication;
 using BloggingPlatform.Application.Repositories.Posts;
 using BloggingPlatform.Domain.Entities;
@@ -16,6 +15,7 @@ using System.Text;
 using BloggingPlatform.ServiceInterface.Interface;
 using BloggingPlatform.DTO.Validator.User;
 using FluentValidation;
+using BloggingPlatform.Strapping.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

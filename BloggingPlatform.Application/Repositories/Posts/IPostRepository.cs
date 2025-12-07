@@ -1,5 +1,6 @@
 ﻿using BloggingPlatform.Application.CQRS.Queries.Posts;
 using BloggingPlatform.Domain.Entities;
+using BloggingPlatform.DTO.DTO.Post;
 
 namespace BloggingPlatform.Application.Repositories.Posts
 {
@@ -7,5 +8,6 @@ namespace BloggingPlatform.Application.Repositories.Posts
     {
         Task AddAsync(Post post);
         Task<GetPostQuery> GetByIdAsync(int postId);
+        Task<(List<PostDTO>, string)> GetAllByEmailAsync(string email);
     }
 }

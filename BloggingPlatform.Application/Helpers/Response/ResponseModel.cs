@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BloggingPlatform.Application.Helpers.Response
+﻿namespace BloggingPlatform.Application.Helpers.Response
 {
     public class ResponseModel<T>
     {
         public bool IsSuccess { get; set; }
         public T Data { get; set; }
+        public string? Id { get; set; }
+        public string Message { get; set; }
         public int? ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
-        public string UserErrorMessage { get; set; }
+        public List<string> Errors { get; set; } = new();
+        public List<string> Warnings { get; set; } = new();
 
     }
 
@@ -46,14 +43,6 @@ namespace BloggingPlatform.Application.Helpers.Response
         public static ResponseModel<T> Failed(string errorMessage, int? errorCode)
         {
             return new ResponseModel<T> { IsSuccess = false, ErrorCode = errorCode, ErrorMessage = errorMessage }; ;
-        }
-        public static ResponseModel<T> Failed(T data, string errorMessage, int? errorCode, string userErrorMessage)
-        {
-            return new ResponseModel<T> { IsSuccess = false, Data = data, ErrorMessage = errorMessage, ErrorCode = errorCode, UserErrorMessage = userErrorMessage };
-        }
-        public static ResponseModel<T> Failed(string errorMessage, int? errorCode, string userErrorMessage)
-        {
-            return new ResponseModel<T> { IsSuccess = false, ErrorCode = errorCode, ErrorMessage = errorMessage, UserErrorMessage = userErrorMessage }; ;
         }
         public static ResponseModel<T> Failed(string errorMessage)
         {

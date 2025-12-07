@@ -25,7 +25,7 @@ namespace BloggingPlatform.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePost([FromBody] PostDTO model)
+        public async Task<IActionResult> CreatePost([FromBody] CreatePostDTO model)
         {
             var authorId = User.FindFirstValue(CustomClaimTypes.userId.ToString());
 
@@ -45,6 +45,15 @@ namespace BloggingPlatform.WebAPI.Controllers
             if (postDto == null)
                 return NotFound(new { Message = "Post not found" });
             return Ok(postDto);
+        }
+
+        [HttpGet("get-all-user-posts/{email}")]
+        public async Task<IActionResult> GetAllUserPosts(string email)
+        {
+            var query = new GetUserPostsQuery(email);
+            var result = await _mediator.Send(query);
+
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
     }
 }

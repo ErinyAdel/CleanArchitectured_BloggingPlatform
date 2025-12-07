@@ -1,8 +1,7 @@
 ﻿namespace BloggingPlatform.DTO.DTO.Post
 {
-    public class PostDTO
+    public class CreatePostDTO
     {
-        public string Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
     }

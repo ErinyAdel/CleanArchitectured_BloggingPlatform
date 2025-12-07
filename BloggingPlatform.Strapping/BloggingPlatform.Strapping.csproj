@@ -11,8 +11,4 @@
 		<ProjectReference Include="..\BloggingPlatform.Persistence\BloggingPlatform.Persistence.csproj" />
 		<ProjectReference Include="..\BloggingPlatform.Repository\BloggingPlatform.Repository.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Mapper\" />
-	</ItemGroup>
 </Project>
