@@ -6,3 +6,8 @@
 # Other temporary files
 BloggingPlatform.WebAPI/logs/
 *.tmp
+# 
+appsettings_old.json
+appsettings.*.json
+*.Development.json
+*.local.json
